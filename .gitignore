@@ -1,0 +1,15 @@
+*.pyc
+__pycache__
+.pytest_cache/
+
+.DS_Store
+
+build/
+dist/
+
+# Generated when 'python setup_egg.py'
+reserch_utils_HT.egg-info/
+
+
+.vscode/
+.env
