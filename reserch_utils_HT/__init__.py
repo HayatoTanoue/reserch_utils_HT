@@ -7,7 +7,7 @@
 """
 
 __author__ = "Hayato Tanoue"
-__version__ = "0.2"
+__version__ = "v0.3"
 __license__ = "MIT"
 
 from reserch_utils_HT.src import *
