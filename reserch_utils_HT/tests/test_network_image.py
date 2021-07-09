@@ -10,7 +10,7 @@ def test_network_to_image():
 
 
 def test_image_to_network():
-    image_dir = "./reserch_utils_HT/tests/network_image/images/"
+    image_dir = "./reserch_utils_HT/tests/images/"
 
     origin = nx.barabasi_albert_graph(100, 2, seed=10)
     G = image_to_network(image_dir + "BA_m2_seed10.png")
