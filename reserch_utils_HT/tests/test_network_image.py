@@ -1,5 +1,6 @@
 import os
 import networkx as nx
+import numpy as np
 
 from reserch_utils_HT.src.network_image import *
 
@@ -7,7 +8,13 @@ from reserch_utils_HT.src.network_image import *
 def test_network_to_image():
     G = nx.barabasi_albert_graph(10, 2)
     assert network_to_image(G, sort=False)
+
+    # sort
     assert network_to_image(G, sort=True)
+    # shuffle
+    img1 = network_to_image(G, shuffle=True, seed=10)
+    img2 = network_to_image(G, shuffle=True, seed=10)
+    assert img1 == img2
 
 
 def test_image_to_network():
