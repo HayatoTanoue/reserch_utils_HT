@@ -1,6 +1,5 @@
 import os
 import networkx as nx
-import numpy as np
 
 from reserch_utils_HT.src.network_image import *
 
@@ -12,6 +11,8 @@ def test_network_to_image():
     # sort
     assert network_to_image(G, sort=True)
     # shuffle
+    assert network_to_image(G, shuffle=True)
+
     img1 = network_to_image(G, shuffle=True, seed=10)
     img2 = network_to_image(G, shuffle=True, seed=10)
     assert img1 == img2
