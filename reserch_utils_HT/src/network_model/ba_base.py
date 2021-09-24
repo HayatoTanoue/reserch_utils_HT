@@ -5,7 +5,7 @@ import numpy as np
 __all__ = ["no_preferential_attachment", "no_growth"]
 
 
-def no_preferential_attachment(n, m, seed=None):
+def no_preferential_attachment(n, m, seed=None, initial_graph=None):
     """
     優先的選択がないバラバシアルバートグラフ
 
@@ -19,6 +19,8 @@ def no_preferential_attachment(n, m, seed=None):
         number of add node edge.
     seed : int
         numpy random seed (default=None)
+    initial_graph : network graph
+        Initial network
 
     Returns
     -------
@@ -28,9 +30,14 @@ def no_preferential_attachment(n, m, seed=None):
     if seed:
         np.random.seed(seed)
 
-    G = nx.empty_graph(m)  # generate m nodes empty graph
+    if initial_graph is None:
+        G = nx.empty_graph(m)  # generate m nodes empty graph
+    else:
+        G = initial_graph.copy()
 
-    for _ in range(n - m):
+    source = len(G)
+
+    for _ in range(n - source):
         nodes = list(G.nodes())
         new_node = nodes[-1] + 1
         G.add_node(new_node)
