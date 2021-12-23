@@ -17,7 +17,7 @@ def test_no_preferential_attachment():
 def test_no_growth():
     G = no_growth(100, 198, seed=10)
     assert len(G) == 100
-    assert G.number_of_edges() == 192
+    assert G.number_of_edges() == 186
 
     # seed が同じ時に同型かどうか
     G1 = no_growth(100, 198, seed=10)
