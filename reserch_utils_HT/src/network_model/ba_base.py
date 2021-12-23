@@ -73,26 +73,18 @@ def no_growth(n, step, seed=None):
 
     G = nx.empty_graph(n)  # generate n nodes empty graphe
 
-    def select_by_degree(G):
-        """次数に比例した選択確率によるノード抽選"""
-        degree = [G.degree(i) + 1 for i in range(n)]  # 次数0 でも抽選されるように+1を行う
-        total_degree = sum(degree)
-        weight = [i / total_degree for i in degree]
-        selected = np.random.choice(range(n), p=weight)
+    deg_list = np.ones(n)
+    nodes = range(n)
 
-        return selected
+    start_nodes = np.random.choice(nodes, size=step)
 
-    s = 0
-    while s < step:
-        # 各ステップで無作為に抽選したノードからエッジを一つ張る
-        now = np.random.randint(n)
-        # 優先的選択に従って接続先ノードを決定
-        selected = select_by_degree(G)
-        while now == selected:
-            selected = select_by_degree(G)
+    for start in start_nodes:
+        p = deg_list / sum(deg_list)
+        selected = np.random.choice(nodes, size=1, p=p)
+        while start == selected:
+            selected = np.random.choice(nodes, size=1, p=p)
+        deg_list[start] += 1
+        deg_list[selected] += 1
 
-        G.add_edge(now, selected)
-
-        s += 1
-
+        G.add_edge(start, selected[0])
     return G
